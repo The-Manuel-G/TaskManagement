@@ -30,7 +30,7 @@ El proyecto requiere las siguientes dependencias NuGet. Estas se instalarán aut
 
 ### **Dependencias de NuGet**
 ```bash
-dotnet add package Microsoft.EntityFrameworkCore --version 7.0.0
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 7.0.0
-dotnet add package Microsoft.EntityFrameworkCore.Tools --version 7.0.0
-dotnet add package Swashbuckle.AspNetCore --version 6.4.0
+dotnet add package Microsoft.EntityFrameworkCore 
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer 
+dotnet add package Microsoft.EntityFrameworkCore.Tools 
+dotnet add package Swashbuckle.AspNetCore 
