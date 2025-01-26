@@ -1,10 +1,10 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace TaskManagement.Models
 {
-    public class TaskItem<T>
+    public class TaskItem
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -27,6 +27,7 @@ namespace TaskManagement.Models
 
         public virtual Status Status { get; set; }
 
-        public T AdditionalData { get; set; }
+        
     }
+
 }

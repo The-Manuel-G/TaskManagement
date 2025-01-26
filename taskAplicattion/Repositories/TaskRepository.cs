@@ -13,23 +13,23 @@ namespace TaskManagement.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<TaskItem<object>>> GetAllAsync()
+        public async Task<IEnumerable<TaskItem>> GetAllAsync() // Elimina <object>
         {
             return await _context.TaskItems.Include(t => t.Status).ToListAsync();
         }
 
-        public async Task<TaskItem<object>> GetByIdAsync(int id)
+        public async Task<TaskItem> GetByIdAsync(int id) // Elimina <object>
         {
             return await _context.TaskItems.Include(t => t.Status).FirstOrDefaultAsync(t => t.Id == id);
         }
 
-        public async Task AddAsync(TaskItem<object> task)
+        public async Task AddAsync(TaskItem task) // Elimina <object>
         {
             await _context.TaskItems.AddAsync(task);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(TaskItem<object> task)
+        public async Task UpdateAsync(TaskItem task) // Elimina <object>
         {
             _context.TaskItems.Update(task);
             await _context.SaveChangesAsync();
