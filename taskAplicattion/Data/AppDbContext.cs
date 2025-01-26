@@ -10,50 +10,50 @@ namespace TaskManagement.Data
 
         // DbSets para las entidades
         public DbSet<Status> Statuses { get; set; }
-        public DbSet<TaskItem<object>> TaskItems { get; set; }
+        public DbSet<TaskItem> TaskItems { get; set; }
 
         // Configuración del modelo
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Llama al método base para las configuraciones predeterminadas
             base.OnModelCreating(modelBuilder);
 
             // Configuración de nombres de tablas
-            modelBuilder.Entity<TaskItem<object>>().ToTable("Task");
+            modelBuilder.Entity<TaskItem>().ToTable("Task");
             modelBuilder.Entity<Status>().ToTable("Status");
 
             // Configuración de la entidad Status
             modelBuilder.Entity<Status>()
-                .HasKey(s => s.StatusId); // Llave primaria
+                .HasKey(s => s.StatusId);
 
             modelBuilder.Entity<Status>()
                 .Property(s => s.Name)
-                .HasMaxLength(50) // Longitud máxima de 50 caracteres
-                .IsRequired(); // Campo obligatorio
+                .HasMaxLength(50)
+                .IsRequired();
 
+            // Relación uno a muchos con TaskItem
             modelBuilder.Entity<Status>()
-                .HasMany(s => s.TaskItems) // Relación uno a muchos
+                .HasMany(s => s.TaskItems)
                 .WithOne(t => t.Status)
                 .HasForeignKey(t => t.StatusId)
-                .OnDelete(DeleteBehavior.Cascade); // Eliminación en cascada
+                .OnDelete(DeleteBehavior.Cascade);
 
             // Configuración de la entidad TaskItem
-            modelBuilder.Entity<TaskItem<object>>()
-                .HasKey(t => t.Id); // Llave primaria
+            modelBuilder.Entity<TaskItem>()
+                .HasKey(t => t.Id);
 
-            modelBuilder.Entity<TaskItem<object>>()
+            modelBuilder.Entity<TaskItem>()
                 .Property(t => t.Name)
-                .HasMaxLength(100) // Longitud máxima de 100 caracteres
-                .IsRequired(); // Campo obligatorio
+                .HasMaxLength(100)
+                .IsRequired();
 
-            modelBuilder.Entity<TaskItem<object>>()
+            modelBuilder.Entity<TaskItem>()
                 .Property(t => t.Description)
-                .HasMaxLength(300) // Longitud máxima de 300 caracteres
-                .IsRequired(); // Campo obligatorio
+                .HasMaxLength(300)
+                .IsRequired();
 
-            modelBuilder.Entity<TaskItem<object>>()
+            modelBuilder.Entity<TaskItem>()
                 .Property(t => t.DueDate)
-                .IsRequired(); // Campo obligatorio
+                .IsRequired();
 
             // Datos iniciales (Seed Data) para Status
             modelBuilder.Entity<Status>().HasData(

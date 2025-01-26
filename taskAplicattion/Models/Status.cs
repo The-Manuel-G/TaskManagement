@@ -15,6 +15,6 @@ namespace TaskManagement.Models
         public string Name { get; set; } = string.Empty;
 
         // Relación uno a muchos con TaskItem
-        public virtual ICollection<TaskItem<object>> TaskItems { get; set; } = new List<TaskItem<object>>();
+        public virtual ICollection<TaskItem> TaskItems { get; set; } = new List<TaskItem>(); 
     }
 }
